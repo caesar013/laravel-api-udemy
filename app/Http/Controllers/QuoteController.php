@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Quote;
 use App\Http\Requests\StoreQuoteRequest;
 use App\Http\Requests\UpdateQuoteRequest;
+use App\Http\Resources\QuoteResource;
 
 class QuoteController extends Controller
 {
@@ -38,6 +39,7 @@ class QuoteController extends Controller
     public function show(Quote $quote)
     {
         //
+        return new QuoteResource($quote);
     }
 
     /**
