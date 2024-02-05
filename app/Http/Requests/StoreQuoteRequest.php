@@ -11,7 +11,7 @@ class StoreQuoteRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,6 +23,8 @@ class StoreQuoteRequest extends FormRequest
     {
         return [
             //
+            'quote' => 'required|string|min:20|max:255',
+            'author' => 'required|string|min:10',
         ];
     }
 }
