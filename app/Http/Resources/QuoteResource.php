@@ -15,7 +15,7 @@ class QuoteResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id' => $this->id,
+            'key' => $this->id,
             'text' => $this->quote,
             'penulis' => $this->author,
         ];
