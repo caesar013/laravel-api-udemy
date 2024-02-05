@@ -18,7 +18,7 @@ class QuoteFactory extends Factory
     {
         return [
             //
-            'text' => $this->faker->sentence,
+            'quote' => $this->faker->sentence,
             'author' => $this->faker->name,
         ];
     }
