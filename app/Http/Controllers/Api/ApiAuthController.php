@@ -17,6 +17,9 @@ class ApiAuthController extends Controller
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
             // Authentication passed...
+            // revoke all tokens by user
+            $request->user()->tokens()->delete();
+            // generate token
             $token = $request->user()->createToken('token')->plainTextToken;
             return new LoginResource([
                 'user' => $request->user(),
@@ -44,5 +47,13 @@ class ApiAuthController extends Controller
     // logout
     public function logout(Request $request)
     {
+        // revoke current token
+        // $request->user()->currentAccessToken()->delete();
+
+        // revoke all tokens by user
+        $request->user()->tokens()->delete();
+
+        // return response
+        return response()->noContent();
     }
 }
