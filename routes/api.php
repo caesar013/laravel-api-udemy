@@ -34,4 +34,4 @@ Route::middleware('auth:sanctum')->group(function () {
 // Route::apiResource('/quote', QuoteController::class);
 
 Route::post('/register', [ApiAuthController::class, 'register']);
-Route::post('/login', [ApiAuthController::class, 'register']);
+Route::post('/login', [ApiAuthController::class, 'login']);
