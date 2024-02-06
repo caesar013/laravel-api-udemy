@@ -23,4 +23,10 @@ Route::get('/hello', function () {
     return response()->json(['message' => 'Hello, World!'], 200);
 });
 
-Route::apiResource('/quote', QuoteController::class);
+// route middleware for authenticated users
+Route::middleware('auth:sanctum')->group(function () {
+    Route::apiResource('/quote', QuoteController::class);
+});
+
+// route without middleware
+// Route::apiResource('/quote', QuoteController::class);
