@@ -17,7 +17,7 @@ class ApiAuthController extends Controller
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
             // Authentication passed...
-            $token = $request->user()->createToken('token')->accessToken;
+            $token = $request->user()->createToken('token')->plainTextToken;
             return new LoginResource([
                 'user' => $request->user(),
                 'token' => $token
