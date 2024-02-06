@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\ApiAuthController;
+use App\Http\Controllers\FileUploadController;
 use App\Http\Controllers\QuoteController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -35,3 +36,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
 Route::post('/register', [ApiAuthController::class, 'register']);
 Route::post('/login', [ApiAuthController::class, 'login']);
+
+// don't add this route to the production environment
+// Route::post('/upload', [FileUploadController::class, 'uploadFile']);
