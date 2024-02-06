@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\ApiAuthController;
 use App\Http\Controllers\QuoteController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -26,7 +27,11 @@ Route::get('/hello', function () {
 // route middleware for authenticated users
 Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('/quote', QuoteController::class);
+    Route::post('/logout', [ApiAuthController::class, 'logout']);
 });
 
 // route without middleware
 // Route::apiResource('/quote', QuoteController::class);
+
+Route::post('/register', [ApiAuthController::class, 'register']);
+Route::post('/login', [ApiAuthController::class, 'register']);
