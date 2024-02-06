@@ -23,7 +23,7 @@ class StoreQuoteRequest extends FormRequest
     {
         return [
             //
-            'quote' => 'required|string|min:20|max:255',
+            'quote' => 'required|string|min:20|max:255|unique:quotes',
             'author' => 'required|string|min:10',
         ];
     }
