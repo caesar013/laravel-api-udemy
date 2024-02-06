@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
+use App\Http\Requests\RegisterRequest;
 use App\Http\Resources\LoginResource;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,6 +23,7 @@ class ApiAuthController extends Controller
             $request->user()->tokens()->delete();
             // generate token
             $token = $request->user()->createToken('token')->plainTextToken;
+            // return response
             return new LoginResource([
                 'user' => $request->user(),
                 'token' => $token
@@ -30,18 +33,24 @@ class ApiAuthController extends Controller
                 'message' => 'Invalid Credentials'
             ], 401);
         }
-        // check if user exists
-        // check if password is correct
-        // create token
-        // return response
     }
 
     // register
-    public function register(Request $request)
+    public function register(RegisterRequest $request)
     {
-        // validate
         // create user
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password)
+        ]);
+        // generate token
+        $token = $user->createToken('token')->plainTextToken;
         // return user
+        return new LoginResource([
+            'user' => $user,
+            'token' => $token
+        ]);
     }
 
     // logout
