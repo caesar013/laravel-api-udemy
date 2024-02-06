@@ -61,6 +61,11 @@ class QuoteController extends Controller
     public function update(UpdateQuoteRequest $request, Quote $quote)
     {
         //
+        $quote->update($request->validated());
+        return new QuoteResource($quote);
+
+        // we can also use the tap function to update the quote
+        // return new QuoteResource(tap($quote)->update($request->validated()));
     }
 
     /**
